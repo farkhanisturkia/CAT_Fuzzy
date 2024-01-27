@@ -4,7 +4,7 @@
 @endif
 <div class="row form-group">
     <div class="col col-md-3">
-        <label class="form-control-label">Nama Ujian</label>
+        <label class="form-control-label">Nama Latihan</label>
     </div>
     <div class="col-12 col-md-9">
         <input required type="text" name="name" class="form-control" value="{{ old('name', $exam->name ?? '') }}">

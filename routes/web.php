@@ -1,13 +1,17 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\ExamStudentQuestionController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BabController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FuzzyController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\QuestionController2;
+use App\http\Controllers\AdaptiveTestingController;
+use App\Http\Controllers\ExamStudentQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +54,19 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
     });
 
+    // Bab Route
+    Route::prefix('bab')->name('bab.')->group(function () {
+        Route::get('/', [BabController::class, 'index'])->name('index');
+        Route::get('/create', [BabController::class, 'create'])->name('create');
+        Route::post('/', [BabController::class, 'store'])->name('store');
+        Route::get('/edit/{bab}', [BabController::class, 'edit'])->name('edit');
+        Route::put('/{bab}', [BabController::class, 'update'])->name('update');
+        Route::delete('/{bab}', [BabController::class, 'destroy'])->name('destroy');
+    });
+
     // Question Routes
     Route::prefix('question')->name('question.')->group(function () {
-        Route::get('/', [QuestionController::class, 'index'])->name('index');
+        Route::get('/{bab}', [QuestionController::class, 'index'])->name('index');
         Route::get('/create', [QuestionController::class, 'create'])->name('create');
         Route::post('/', [QuestionController::class, 'store'])->name('store');
         Route::get('/edit/{question}', [QuestionController::class, 'edit'])->name('edit');
@@ -71,8 +85,20 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{exam}', [ExamController::class, 'destroy'])->name('destroy');
     });
 
+    //fuzzy Route
+    Route::prefix('fuzzy')->name('fuzzy.')->group(function(){
+        Route::get('/', [FuzzyController::class, 'index'])->name('index');
+        Route::get('/{student}', [FuzzyController::class, 'show'])->name('show');
+    });
+
     // ExamStudentQuestion Routes
     Route::prefix('examstudentquestion')->name('examstudentquestion.')->group(function () {
         Route::put('/{examStudentQuestion}', [ExamStudentQuestionController::class, 'update'])->name('update');
     });
+
+    // Route::prefix('adaptive')->name('adaptive.')->group(function () {
+    //     Route::get('/{exam}', [AdaptiveTestingController::class, 'show'])->name('show');
+    // });
+
 });
+// Route::get('questions/{student}', [QuestionController2::class, 'showQuestions']);

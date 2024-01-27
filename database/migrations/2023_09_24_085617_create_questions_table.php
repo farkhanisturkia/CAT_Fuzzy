@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->integer('bab_id');
             $table->string('question');
-            $table->json('multiple_choice');
+            $table->json('multiple_choice')->nullable();
             $table->string('answer');
-            $table->enum('category', ['Mudah', 'Menengah', 'Sulit']);
-            $table->double('value');
+            $table->integer('index');
+            $table->enum('category', ['Mudah', 'Sedang', 'Sulit']);
             $table->timestamps();
         });
     }

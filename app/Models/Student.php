@@ -10,48 +10,65 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'nisn',
-        'name',
-        'username',
-        'password',
-        'kelas',
-        'gender',
-        'address',
-    ];
+    protected $table = 'students';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 
     public static function boot()
     {
         parent::boot();
-
-        // on creating
-        self::creating(function(Student $model){
-            $user = User::create([
-                'name' => $model->name,
-                // 'username' => $model->nisn,
-                'username' => $model->username,
-                // 'password' => '123456'
-                'password' => $model->password
-            ]);
-            $model->user_id = $user->id;
-        });
-
-        // on updated
-        self::updated(function(Student $model){
-            $user = $model->user;
-            $user->name = $model->name;
-            $user->save();
-        });
-
-        // on deleted
-        self::deleted(function(Student $model){
-            $user = $model->user;
-            $user->delete();
-        });
     }
 
-    public function user() : BelongsTo {
-        return $this->belongsTo(User::class);
+    public function examStudent()
+    {
+        return $this->hasMany(Exam::class);
+    }
+
+    public function fuzzy()
+    {
+        return $this->hasMany(Fuzzy::class);
     }
 }
+
+// class Student extends Model
+// {
+//     use HasFactory;
+
+//     protected $fillable = [
+//         'user_id',
+//         'nisn',
+//         'name',
+//         'username',
+//         'password',
+//         'kelas',
+//         'gender',
+//         'address',
+//     ];
+
+//     public static function boot()
+//     {
+//         parent::boot();
+//     }
+
+//     public function user(){
+//         return $this->belongsTo(User::class, 'user_id');
+//     }
+
+//     public function examStudent()
+//     {
+//         return $this->hasMany(Exam::class);
+//     }
+
+//     public function fuzzy()
+//     {
+//         return $this->hasMany(Fuzzy::class);
+//     }
+// }

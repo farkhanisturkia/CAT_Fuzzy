@@ -46,6 +46,8 @@
                                         <th>No</th>
                                         <th>NISN</th>
                                         <th>Nama Siswa</th>
+                                        <th>Username</th>
+                                        <th>Kelas</th>
                                         <th>Jenis Kelamin</th>
                                         <th>Alamat</th>
                                         <th>Aksi</th>
@@ -56,7 +58,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->nisn }}</td>
-                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->user->name }}</td>
+                                            <td>{{ $data->user->username }}</td>
+                                            <td>{{ $data->kelas }}</td>
                                             <td>{{ $data->gender }}</td>
                                             <td>{{ $data->address }}</td>
                                             <td>

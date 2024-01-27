@@ -71,7 +71,7 @@ class ExamStudentQuestionController extends Controller
             // end the exam
             $examStudentQuestion->result->update([
                 'ended_at' => now(),
-                'final_score' => $answeredQuestions->where('is_correct')->sum('question.value') / $answeredQuestions->sum('question.value') * 100
+                'final_score' => ($answeredQuestions->where('is_correct')->count() * 100) / $answeredQuestions->count()
             ]);
         }
         return redirect()->route('exam.show', $exam->id);

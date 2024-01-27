@@ -49,4 +49,9 @@ class Exam extends Model
         return $this->belongsTo(Student::class)
                 ->using(ExamStudent::class);
     }
+
+    public function examStudent()
+    {
+        return $this->hasMany(Exam::class);
+    }
 }

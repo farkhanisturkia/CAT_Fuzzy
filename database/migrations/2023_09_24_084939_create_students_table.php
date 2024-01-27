@@ -15,13 +15,12 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('nisn')->unique();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password')->nullable();
-            $table->enum('kelas', ['7', '8', '9'])->nullable();
-            $table->enum('gender', ['Laki-Laki', 'Perempuan'])->nullable();
+            $table->enum('kelas', ['7', '8', '9']);
+            $table->enum('gender', ['Laki-Laki', 'Perempuan']);
+            // $table->enum('kemampuan',['Tinggi','Sedang','Rendah'])->default('Sedang');
             $table->text('address');
             $table->timestamps();
+
         });
     }
 

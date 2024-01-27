@@ -9,16 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
+        'user_id',
         'question',
         'multiple_choice',
-        'value',
+        'index',
         'answer',
         'category',
     ];
@@ -27,12 +22,10 @@ class Question extends Model
         'multiple_choice' => 'object',
     ];
 
-    /**
-     * Scope a query to get first question.
-     */
     public function scopeStartingQuestion(Builder $query): void
     {
-        $query->where('value', 0.3)->inRandomOrder();
+        // $query->where('index', 1);
+        $query->where('index', rand(1,5));
     }
 
 
@@ -40,23 +33,29 @@ class Question extends Model
      * Scope a query to get next question.
      */
 
-    public function scopeNextQuestion(Builder $query, $answeredQuestion, $newValue): void
+    public function scopeNextQuestion(Builder $query, $answeredQuestion, $newIndex, $questions): void
     {
-        if ($newValue <= 0) {
-            $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
-                ->where('value', 0.1)
-                ->inRandomOrder();
-        }
-        else if ($newValue >= 0.6){
-            $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
-                ->where('value', 0.5)
-                ->inRandomOrder();
-        }
-        else{
-            $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
-                ->where('value', $newValue)
-                ->inRandomOrder();
-        }
+        // if ($newIndex <= 0) {
+        //     $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
+        //         ->where('index', 1);
+        //      ->inRandomOrder();
+        // }
+        // if ($newIndex >= max($questions->question->index)){
+        //     $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
+        //         ->where('index', $newIndex - max($questions->question->index));
+        // //      ->inRandomOrder();
+        // }
+        // else{
+        //     $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
+        //         ->where('index', $newIndex);
+        // //         // ->inRandomOrder();
+        // }
+        $query->whereNotIn('id', $answeredQuestion->pluck('question_id'))
+                ->where('index', $newIndex);
+    }
+
+    public function bab(){
+        return $this->belongsTo(Bab::class, 'bab_id');
     }
 
     // public function scopeNextQuestion(Builder $query, $answeredQuestion, $newValue): void

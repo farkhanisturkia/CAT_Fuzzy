@@ -47,7 +47,9 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Username</th>
+                                        <th>Email</th>
                                         <th>Role</th>
+                                        <th>Mapel</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -57,11 +59,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->username }}</td>
+                                            <td>{{ $data->email }}</td>
                                             <td>{{ $data->role }}</td>
+                                            <td>{{ $data->mapel?->mapel}}</td>
                                             <td>
                                                 <div class="au-btn-group text-center" role="group">
-                                                    @if (Auth::id() != $data->id)
-                                                    <a type="button" class="btn btn-info btn-sm" href="{{ route('user.edit', $data->id) }}" data-placement="top" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                                    @if (Auth::user()->role != $data->role)
+                                                        <a type="button" class="btn btn-info btn-sm" href="{{ route('user.edit', $data->id) }}" data-placement="top" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                                         <button type="button" data-target="#modal-delete-user-{{ $data->id }}" class="btn btn-danger btn-sm" data-placement="top" title="Delete" data-toggle="modal"><i class="fas fa-trash"></i></button>
                                                     @endif
                                                 </div>

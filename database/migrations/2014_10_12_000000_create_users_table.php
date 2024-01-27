@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique()->nullable();
+            $table->integer('mapel_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['admin', 'teacher', 'student'])->default('student');

@@ -4,6 +4,7 @@
     <div class="col-12 col-md-9">
         <div class="card">
             <div class="card-body">
+                {{-- <p>{{ $question->id }}</p> --}}
                 <p>{{ $question->question }}</p>
                 <form action="{{ route('examstudentquestion.update', $examStudentQuestion->id) }}" method="POST">
                     @csrf
@@ -55,7 +56,7 @@
                             <tbody>
                                 <tr>
                                     <td>Nilai</td>
-                                    <td>{{ $result->final_score }}</td>
+                                    <td><?php echo (round( $result->final_score ))?> / 100</td>
                                 </tr>
                                 <tr>
                                     <td>Total Soal Terjawab</td>

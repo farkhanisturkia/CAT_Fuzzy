@@ -26,9 +26,11 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'username' => ['required', 'unique:'.User::class.',username,'.$this->id],
-            'role' => ['required', new Enum(UserRoles::class)]
+            'name'      => ['required'],
+            'username'  => ['required', 'unique:'.User::class.',username,'.$this->id],
+            'role'      => ['required', new Enum(UserRoles::class)],
+            'email'     => ['required', 'string'],
+            'mapel_id'  => ['integer']
         ];
     }
 }

@@ -1,5 +1,5 @@
 @php
-    $title = 'Tambah Ujian';
+    $title = 'Tambah Latihan';
 @endphp
 @extends('layouts.admin_template')
 @section('title', $title)

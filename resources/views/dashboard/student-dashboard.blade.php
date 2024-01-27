@@ -33,6 +33,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('exam.show', $exam->id) }}" class="btn btn-primary float-right">{{ $isFinished ? 'Hasil' : 'Mulai' }}</a>
+                    {{-- <a href="{{ route('questions/{student}', Auth::id()) }}" class="btn btn-primary float-right">{{ $isFinished ? 'Hasil' : 'Mulai' }}</a> --}}
                 </div>
             </div>
         </div>

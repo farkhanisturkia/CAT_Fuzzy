@@ -28,7 +28,9 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'username' => ['required', 'unique:'.User::class],
+            'email' => ['required', 'string'],
             'role' => ['required', new Enum(UserRoles::class)],
+            'mapel_id'  =>['integer'],
             'password' => ['required', 'string']
         ];
     }

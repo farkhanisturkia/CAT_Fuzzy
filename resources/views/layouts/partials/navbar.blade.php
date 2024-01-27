@@ -8,7 +8,7 @@
                     <div class="account-wrap">
                         <div class="account-item clearfix js-item-menu">
                             <div class="image">
-                                <img src="{{ asset('assets/images/icon/avatar-01.jpg') }}" alt="John Doe" />
+                                <img src="{{ asset('assets/images/icon/avatar-01.jpg') }}" alt="" />
                             </div>
                             <div class="content">
                                 <a class="js-acc-btn text-white">{{ Auth::user()->name }}</a>
@@ -17,7 +17,7 @@
                                 <div class="info clearfix">
                                     <div class="image">
                                         <a href="#">
-                                            <img src="{{ asset('assets/images/icon/avatar-01.jpg') }}"" alt="John Doe" />
+                                            <img src="{{ asset('assets/images/icon/avatar-01.jpg') }}"" alt="" />
                                         </a>
                                     </div>
                                     <div class="content">
@@ -28,8 +28,8 @@
                                     </div>
                                 </div>
                                 <div class="account-dropdown__footer">
-                                    <a href="/logout">
-                                        <i class="zmdi zmdi-power"></i>Logout</a>
+                                    <a href="{{ route('user.edit',Auth::id()) }}"><i class="fa fa-pencil-square-o"></i>Edit Akun</a>
+                                    <a href="/logout"><i class="fa fa-power-off"></i>Logout</a>
                                 </div>
                             </div>
                         </div>

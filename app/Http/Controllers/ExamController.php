@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\Exam;
+use App\Models\Fuzzy;
+use App\Models\Student;
 use App\Enums\UserRoles;
+use App\Models\Question;
+use App\Models\ExamStudent;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreExamRequest;
 use App\Http\Requests\UpdateExamRequest;
-use App\Models\Exam;
-use App\Models\ExamStudent;
-use App\Models\Question;
-use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -51,7 +54,7 @@ class ExamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Exam $exam)
+    public function show(Exam $exam, Student $student)
     {
         $data = [];
         $user = Auth::user();
@@ -70,8 +73,15 @@ class ExamController extends Controller
                 'examStudentQuestion' => $nextQuestion,
                 'question' => $nextQuestion?->question,
             ];
-            // return $data;
+
             return view('exam.student-show', $data);
+        }
+        else if ($user->role == UserRoles::Teacher) {
+            $examStudent = ExamStudent::with('questions')->where('exam_id', $exam->id)->get();
+
+            $data = ['exam' => $examStudent];
+
+            return view('exam.show', $data);
         }
         return view('exam.show', $data);
     }

@@ -6,6 +6,10 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use Exception;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -14,9 +18,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data = [
-            'students' => Student::get()
-        ];
+        $data = ['students' => Student::with(['user'])->get()];
+
         return view('student.index', $data);
     }
 
@@ -32,18 +35,40 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request)
+    public function store(Request $request)
     {
         // return $request->validated();
-        try {
-            Student::create($request->validated());
+        // dd($request->all());
+        $user = User::create([
+            'name'      => $request->name,
+            'username'  => $request->username,
+            'password'  => Hash::make($request->password),
+            'role'      => 'student',
+        ]);
 
-            return redirect()->back()->with(['success' => 'Data Siswa baru berhasil ditambahkan']);
+        $student = Student::create([
+            'user_id'       => $user->id,
+            'nisn'          => $request->nisn,
+            'kelas'         => $request->kelas, 
+            'gender'        => $request->gender, 
+            'address'       => $request->address, 
+        ]);
+
+        if($user && $student){
+            return redirect()->back()->with(['success' => 'Data Siswa baru berhasil ditambahkan!']);
+        }else{
+            return redirect()->back()->with(['failed' => 'Data siswa gagal ditambahkan!']);
         }
 
-        catch (Exception $e) {
-            return redirect()->back()->with(['failed' => $e]);
-        }
+        // try {
+        //     Student::create($request->validated());
+
+        //     return redirect()->back()->with(['success' => 'Data Siswa baru berhasil ditambahkan']);
+        // }
+
+        // catch (Exception $e) {
+        //     return redirect()->back()->with(['failed' => $e]);
+        // }
     }
 
     /**

@@ -9,8 +9,11 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-smp.png') }}">
+
     <!-- Title Page-->
-    <title>CBT | School of X | @yield('title')</title>
+    <title>CAT | School of X | @yield('title')</title>
 
     <!-- Fontfaces CSS-->
     <link href="{{ asset('assets/css/font-face.css') }}" rel="stylesheet" media="all">

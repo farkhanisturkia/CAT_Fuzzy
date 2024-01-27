@@ -35,20 +35,25 @@
                     @break
 
                 @case(UserRoles::Teacher)
-                    {{-- Admin Menu --}}
+                    {{-- Teacher Menu --}}
                     <li class="{{ $currentUrl == route('dashboard') ? 'active' : '' }} has-sub">
                         <a class="js-arrow" href="{{ route('dashboard') }}">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                         </a>
                     </li>
-                    <li class="{{ $currentUrl == route('question.index') ? 'active' : '' }} has-sub">
-                        <a href="{{ route('question.index') }}">
+                    <li class="{{ $currentUrl == route('bab.index') ? 'active' : '' }} has-sub">
+                        <a href="{{ route('bab.index') }}">
                             <i class="fas fa-table"></i>Bank Soal
                         </a>
                     </li>
                     <li class="{{ $currentUrl == route('exam.index') ? 'active' : '' }} has-sub">
                         <a href="{{ route('exam.index') }}">
                             <i class="fas fa-chart-bar"></i>Data Ujian
+                        </a>
+                    </li>
+                    <li class="{{ $currentUrl == route('fuzzy.index') ? 'active' : '' }} has-sub">
+                        <a href="{{ route('fuzzy.index') }}">
+                            <i class="fa fa-database"></i>Data Kemampuan
                         </a>
                     </li>
                     @break

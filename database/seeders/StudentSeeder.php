@@ -16,94 +16,74 @@ class StudentSeeder extends Seeder
     public function run(): void
     {
         Student::create([
-            'name' => "Adam Asyraf Al-hikam",
-            'username'=> "adam",
-            'password' => "123456",
-            'nisn' => "1234567890",
-            'kelas' => "8",
-            'gender' => "Laki-Laki",
-            'address' => "Sidoarjo"
+            'user_id'   => "7",
+            'nisn'      => "1234567890",
+            'kelas'     => "8",
+            'gender'    => "Laki-Laki",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Adellia Naashifa Syaharani",
-            'username'=> "adellia",
-            'password' => "123456",
-            'nisn' => "1234567891",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "8",
+            'nisn'      => "1234567891",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Azzahrah Putri Nabila",
-            'username'=> "azzahrah",
-            'password' => "123456",
-            'nisn' => "1234567892",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "9",
+            'nisn'      => "1234567892",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Brigitte Sinel Kefi Obehetan",
-            'username'=> "brigitte",
-            'password' => "123456",
-            'nisn' => "1234567893",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "10",
+            'nisn'      => "1234567893",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Clairine Fahma Sania",
-            'username'=> "clairine",
-            'password' => "123456",
-            'nisn' => "1234567894",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "11",
+            'nisn'      => "1234567894",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Dhickson Krisna Dianto",
-            'username'=> "dhickson",
-            'password' => "123456",
-            'nisn' => "1234567895",
-            'kelas' => "8",
-            'gender' => "Laki-Laki",
-            'address' => "Sidoarjo"
+            'user_id'   => "12",
+            'nisn'      => "1234567895",
+            'kelas'     => "8",
+            'gender'    => "Laki-Laki",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Kamila Mahira Herlambang",
-            'username'=> "kamila",
-            'password' => "123456",
-            'nisn' => "1234567896",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "13",
+            'nisn'      => "1234567896",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Kezia Angela Charissa Dinaputri",
-            'username'=> "kezia",
-            'password' => "123456",
-            'nisn' => "1234567897",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "14",
+            'nisn'      => "1234567897",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Mahyoni Izha Mahadev",
-            'username'=> "mahyoni",
-            'password' => "123456",
-            'nisn' => "1234567898",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "15",
+            'nisn'      => "1234567898",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
         Student::create([
-            'name' => "Manuella Ellyada",
-            'username'=> "manuella",
-            'password' => "123456",
-            'nisn' => "1234567899",
-            'kelas' => "8",
-            'gender' => "Perempuan",
-            'address' => "Sidoarjo"
+            'user_id'   => "16",
+            'nisn'      => "1234567899",
+            'kelas'     => "8",
+            'gender'    => "Perempuan",
+            'address'   => "Sidoarjo"
         ]);
     }
 }

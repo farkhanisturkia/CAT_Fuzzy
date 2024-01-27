@@ -29,6 +29,7 @@ class User extends Authenticatable
         'username',
         'role',
         'password',
+        'mapel_id',
     ];
 
     /**
@@ -54,22 +55,21 @@ class User extends Authenticatable
     /**
      * Scope a query to only include admin users.
      */
-    public function scopeAdmin(Builder $query): void
-    {
-        $query->where('role', UserRoles::Admin);
-    }
+    // public function scopeAdmin(Builder $query): void
+    // {
+    //     $query->where('role', UserRoles::Admin);
+    // }
 
     /**
      * Accessors and Mutators
      */
-    protected function password(): Attribute
+
+    public function student()
     {
-        return Attribute::make(
-            set: fn (string $value) => Hash::make($value),
-        );
+        return $this->hasOne(Student::class);
     }
 
-    public function student() : HasOne {
-        return $this->hasOne(Student::class);
+    public function mapel(){
+        return $this->belongsTo(Mapel::class, 'mapel_id');
     }
 }

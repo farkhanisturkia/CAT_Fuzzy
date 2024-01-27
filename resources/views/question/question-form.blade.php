@@ -10,6 +10,7 @@
 @if (isset($question))
     <input type="hidden" name="id" value="{{ $question->id }}">
 @endif
+<input type="hidden" name="user_id" value="{{ Auth::id() }}">
 <div class="row form-group">
     <div class="col col-md-3">
         <label class="form-control-label">Soal</label>
@@ -20,18 +21,19 @@
 </div>
 <div class="row form-group">
     <div class="col col-md-3">
-        <label class="form-control-label">Indeks Daya Beda</label>
+        <label class="form-control-label">Index</label>
     </div>
     <div class="col-12 col-md-9">
-        <input required type="text" name="value" placeholder="Masukan indeks daya beda" class="form-control" value="{{ old('value', $question->value ?? '') }}">
+        <input required type="text" name="index" placeholder="Masukan index" class="form-control" value="{{ old('index', $question->index ?? '') }}">
     </div>
 </div>
 <div class="row form-group">
     <div class="col col-md-3">
-        <label class="form-control-label">Indeks Daya Kesukaran</label>
+        <label class="form-control-label">Category</label>
     </div>
     <div class="col-12 col-md-9">
         <select required name="category" class="form-control" value="{{ old('category', $question->category ?? '') }}">
+            <option selected="selected">-- Masukan Category --</option>
             <option value="Mudah" {{ old('category', $question->category ?? '') == 'Mudah' ? 'selected' : '' }}>Mudah</option>
             <option value="Menengah" {{ old('category', $question->category ?? '') == 'Menengah' ? 'selected' : '' }}>Menengah</option>
             <option value="Sulit" {{ old('category', $question->category ?? '') == 'Sulit' ? 'selected' : '' }}>Sulit</option>

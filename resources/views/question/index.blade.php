@@ -45,25 +45,29 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Soal</th>
-                                        <th>Indeks Daya Beda</th>
-                                        <th>Indeks Kesukaran</th>
+                                        <th>Jawaban</th>
+                                        <th>Indeks</th>
+                                        <th>Category</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($questions as $row)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->question }}</td>
-                                            <td>{{ $row->value }}</td>
-                                            <td>{{ $row->category }}</td>
-                                            <td>
-                                                <div class="au-btn-group text-center d-flex" role="group">
-                                                    <a class="btn btn-info btn-sm" href="{{ route('question.edit', $row->id) }}" data-placement="top" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                                    <button type="button" data-target="#modal-delete-question-{{$row->id}}" class="btn btn-danger btn-sm ml-1" data-placement="top" title="Delete" data-toggle="modal" data-target="#hapususer"><i class="fas fa-trash"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {{-- @if (Auth::user()->mapel_id == $row->mapel_id)     --}}
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $row->question }}</td>
+                                                <td>{{ $row->answer }}</td>
+                                                <td>{{ $row->index }}</td>
+                                                <td>{{ $row->category }}</td>
+                                                <td>
+                                                    <div class="au-btn-group text-center d-flex" role="group">
+                                                        <a class="btn btn-info btn-sm" href="{{ route('question.edit', $row->id) }}" data-placement="top" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                                        <button type="button" data-target="#modal-delete-question-{{$row->id}}" class="btn btn-danger btn-sm ml-1" data-placement="top" title="Delete" data-toggle="modal" data-target="#hapususer"><i class="fas fa-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {{-- @endif --}}
                                     @endforeach
                                 </tbody>
                             </table>
@@ -92,7 +96,7 @@
                     @method('DELETE')
                     <div class="row form-group">
                         <div class="col col-md justify-content">
-                            <label>Apakah anda ingin menghapus Soal dengan kode <b style="color: red">123</b> ini ?</label>
+                            <label>Apakah anda ingin menghapus Soal dengan kode <b style="color: red">{{ $row->id }}</b> ini ?</label>
                         </div>
                     </div>
                     <div class="modal-footer">

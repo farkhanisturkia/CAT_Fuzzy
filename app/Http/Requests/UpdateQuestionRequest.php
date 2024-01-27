@@ -27,7 +27,8 @@ class UpdateQuestionRequest extends FormRequest
             'multiple_choice' => 'required',
             'answer' => 'required',
             'category' => 'required',
-            'value' => 'required|numeric|between:0.1,1',
+            // 'value' => 'required|numeric|between:0.1,1',
+            'index' => 'required|numeric',
         ];
     }
 }

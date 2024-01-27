@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\Question;
+use App\Models\Bab;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
-use App\Models\Question;
 
 class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Bab $bab)
     {
-        $questions = Question::latest()->get();
+        $questions = Question::where('bab_id', $bab->id)->latest()->get();
 
         $data = [
             'questions' => $questions
@@ -35,15 +37,30 @@ class QuestionController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        try {
-            Question::create($request->validated());
+        // dd($request->all());
+        $question = Question::create([
+            'user_id'               => $request->user_id,
+            'question'              => $request->question,
+            'index'                 => $request->index, 
+            'category'              => $request->category, 
+            'multiple_choice'       => $request->multiple_choice,
+            'answer'                => $request->answer,
+        ]);
 
-            return redirect()->back()->with(['success' => 'Soal baru berhasil ditambahkan']);
+        if($question){
+            return redirect()->back()->with(['success' => 'Data Soal baru berhasil ditambahkan!']);
+        }else{
+            return redirect()->back()->with(['failed' => 'Data soal gagal ditambahkan!']);
         }
+        // try {
+        //     Question::create($request->validated());
 
-        catch (Exception $e) {
-            return redirect()->back()->with(['failed' => 'Data telah ada atau tidak sesuai silahkan dicek kembali']);
-        }
+        //     return redirect()->back()->with(['success' => 'Soal baru berhasil ditambahkan']);
+        // }
+
+        // catch (Exception $e) {
+        //     return redirect()->back()->with(['failed' => 'Data telah ada atau tidak sesuai silahkan dicek kembali']);
+        // }
     }
 
     /**
